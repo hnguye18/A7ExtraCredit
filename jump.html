@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Jump</title>
+</head>
+
+<body>
+    <script>
+        function jumper() {
+            if (document.getElementById("left").value == "") {
+                document.getElementById("left").value = document.getElementById("right").value;
+                document.getElementById("right").value = "";
+            } else {
+                document.getElementById("right").value = document.getElementById("left").value;
+                document.getElementById("left").value = "";
+            }
+            swich();
+        }
+        
+        function swich() {
+            if (document.getElementById("left").value == "") {
+                document.getElementById("jump").innerHTML = "< JUMP";                
+            } else {
+                document.getElementById("jump").innerHTML = "JUMP >"; 
+            }
+        } 
+    
+    
+    </script>
+    <form>
+        <input type = "text" id = "left" onchange = "swich()">
+        <button type = "button" id = "jump" onclick = "jumper()">JUMP > </button>
+        <input type = "text" id = "right" onchange = "swich()">
+    </form>
+</body>
+</html>

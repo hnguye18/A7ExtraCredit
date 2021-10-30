@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Joe's Hotdogs FORM</title>
+</head>
+
+<body>
+    <h1>JOE'S HOTDOGS</h1>
+    <h2>Online Order</h2>
+    <form id = "qty">
+        Hotdogs &nbsp | &nbsp $3.75 each &nbsp | &nbsp 
+        <select name = "hdq" id = "hdq" form = "qty">
+            <option value = 0>0</option>
+            <option value = 1>1</option>
+            <option value = 2>2</option>
+            <option value = 3>3</option>
+            <option value = 4>4</option>
+            <option value = 5>5</option>
+            <option value = 10>10</option>
+            <option value = 15>15</option>
+            <option value = 20>20</option>
+        </select> <br>
+        Fries &nbsp &nbsp &nbsp &nbsp | &nbsp $2.00 each &nbsp | &nbsp
+        <select name = "fdq" id = "fdq" form = "qty">
+            <option value = 0>0</option>
+            <option value = 1>1</option>
+            <option value = 2>2</option>
+            <option value = 3>3</option>
+            <option value = 4>4</option>
+            <option value = 5>5</option>
+            <option value = 10>10</option>
+            <option value = 15>15</option>
+            <option value = 20>20</option>
+        </select> <br>
+        Soda &nbsp &nbsp &nbsp &nbsp | &nbsp $1.50 each &nbsp | &nbsp
+        <select name = "sdq" id = "sdq" form = "qty">
+            <option value = 0>0</option>
+            <option value = 1>1</option>
+            <option value = 2>2</option>
+            <option value = 3>3</option>
+            <option value = 4>4</option>
+            <option value = 5>5</option>
+            <option value = 10>10</option>
+            <option value = 15>15</option>
+            <option value = 20>20</option>
+        </select>
+    </form> <br>
+    <button onclick = "calc()">Calculate total</button>
+    <div id = "sub"></div>
+    <script language = "javascript">
+        function calc() {
+            prices = [3.75, 2, 1.5];
+            qty = [0, 0, 0];
+            qty[0] = document.getElementById("hdq").value;
+            qty[1] = document.getElementById("fdq").value;
+            qty[2] = document.getElementById("sdq").value;
+            if (qty[0] == 0 && (qty[1] == 0 && qty[2] == 0)) {
+                alert("No items ordered. Please add items to cart.");
+            } else {
+                subtotal = 0;
+                for (let i = 0; i < 3; i++) {
+                    subtotal += (prices[i] * qty[i]);
+                } 
+                total = subtotal;
+         
+                if (total >= 20) {
+                    total *= 0.9;
+                }
+            
+                str = "";
+                str += ("<br>Your order:<br> <br>");
+            
+                str += ("Hotdogs: " + qty[0]);
+                str += ("<br>Fries: " + qty[1]);
+                str += ("<br>Sodas: " + qty[2]);
+                str += ("<br>Subtotal: $" + subtotal);
+            
+                if (Boolean(subtotal >= 20)) {
+                    str += ("<br><br>Discount: $" + (subtotal * 0.1).toFixed(2));
+                } else {
+                    str += ("<br><br>No discount applied<br>");
+                }
+                str += ("<br><br>Tax: $" + ((total * 0.0625).toFixed(2)) + "<br/>");
+                total *= 1.0625;
+                str += ("Total: $" + (total.toFixed(2)) + "<br/>");
+                document.getElementById("sub").innerHTML = str;
+            }
+            
+        }
+    </script>
+</body>
+</html>
